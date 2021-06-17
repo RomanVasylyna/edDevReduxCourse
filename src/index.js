@@ -3,54 +3,23 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+// Function that allows to create a store
 import { createStore } from 'redux';
+// We can't add two reducers as params simultaneously so we have to unite them
 import allReducers from './reducers';
-
-const store = createStore(allReducers);
-
-
-// Store = Global State
-
-// Action = Describes (but not does) what is to be done
-// const increment = () => {
-//   return {
-//     type: 'INCREMENT'
-//   }
-// }
-
-// const decrement = () => {
-//   return {
-//     type: 'DECREMENT'
-//   }
-// }
-
-// Reducer = Changes the state based on a specific action
-// const counter = (state = 0, action) => {
-//   switch (action.type) {
-//     case 'INCREMENT':
-//       return state + 1;
-//     case 'DECREMENT':
-//       return state - 1;
-//     default:
-//       return state;
-//   }
-// };
-
-// Creating a store where counter is a parameter
-// let store = createStore(counter);
-// Displaying store in the console
-// store.subscribe(() => console.log(store.getState()));
+// Importing Provider from react-redux that allows a component to use store
+import { Provider } from 'react-redux';
 
 
-// Dispatch = Implements an action to the reducer/Executes an action
-// store.dispatch(increment());
-// store.dispatch(increment());
-// store.dispatch(decrement());
+// Create a store which takes a param of combined reducers
+const store = createStore(allReducers, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 
 ReactDOM.render(
   <React.StrictMode>
+    <Provider store={store}>
     <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

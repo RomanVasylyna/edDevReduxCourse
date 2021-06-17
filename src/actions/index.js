@@ -1,9 +1,19 @@
-import counterReducer from './counter';
-import loggedReducer from './isLogged';
-import { combineReducers } from 'redux';
+export const increment = number => {
+    return {
+        type: 'INCREMENT',
+        payload: number
+    }
+}
 
+export const decrement = number => {
+    return {
+        type: 'DECREMENT',
+        payload: number
+    }
+}
 
-const allReducers = combineReducers({
-    counterReducer,
-    loggedReducer
-});
+export const signIn = () => {
+    return {
+        type: 'SIGN_IN'
+    }
+}
