@@ -48,10 +48,12 @@ function App() {
 
   // Submit Form
   const submitForm = e => {
-    e.preventDefault();
-    dispatch(signIn());
-    setUsername(userNameVal.current.value);
-    userNameVal.current.value = "";
+    if(!isLogged) {
+      e.preventDefault();
+      dispatch(signIn());
+      setUsername(userNameVal.current.value);
+      userNameVal.current.value = "";
+    }
   }
 
 
